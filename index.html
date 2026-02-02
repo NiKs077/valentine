@@ -16,7 +16,7 @@
       overflow: hidden;
     }
 
-    .container {
+    /* .container {
       width: 380px;
       max-height: 85vh;
       overflow-y: auto;
@@ -28,7 +28,30 @@
       box-shadow: 0 20px 50px rgba(0,0,0,0.25);
       position: relative;
       z-index: 10;
-    }
+    } */
+
+    .container {
+  width: 380px;
+  max-height: 85vh;
+  overflow-y: auto;
+
+  background: white;
+  border-radius: 20px;
+  padding: 30px;
+  text-align: center;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.25);
+  position: relative;
+  z-index: 10;
+
+  transition: all 0.6s ease;
+}
+
+/* 👇 Expanded state */
+.container.expanded {
+  width: 90vw;
+  max-width: 700px;
+  max-height: 90vh;
+}
 
     h1 {
       color: #ff4d6d;
@@ -186,17 +209,31 @@
   });
 
   // YES click
+  // yesBtn.addEventListener("click", () => {
+  //   music.play().catch(() => {});
+  //   musicBtn.style.display = "block";
+
+  //   loveText.textContent = `Yayyy ${herName}! 🥰💘`;
+
+  //   buttons.style.display = "none";
+  //   result.style.display = "block";
+
+  //   launchHearts();
+  // });
+
   yesBtn.addEventListener("click", () => {
-    music.play().catch(() => {});
-    musicBtn.style.display = "block";
+  document.querySelector(".container").classList.add("expanded");
 
-    loveText.textContent = `Yayyy ${herName}! 🥰💘`;
+  music.play().catch(() => {});
+  musicBtn.style.display = "block";
 
-    buttons.style.display = "none";
-    result.style.display = "block";
+  loveText.textContent = `Yayyy ${herName}! 🥰💘`;
 
-    launchHearts();
-  });
+  buttons.style.display = "none";
+  result.style.display = "block";
+
+  launchHearts();
+});
 
   // Music toggle
   musicBtn.addEventListener("click", () => {
@@ -212,4 +249,5 @@
 
 </body>
 </html>
+
 
