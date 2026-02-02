@@ -46,6 +46,10 @@
   transition: all 0.6s ease;
 }
 
+    #noBtn {
+  transition: left 0.25s ease;
+}
+
 /* 👇 Expanded state */
 .container.expanded {
   width: 95vw;
@@ -202,11 +206,40 @@
     noBtn.style.top = `${Math.random() * maxY}px`;
   }
 
-  noBtn.addEventListener("mouseover", moveNoButton);
-  noBtn.addEventListener("touchstart", (e) => {
-    e.preventDefault();
-    moveNoButton();
-  });
+  // noBtn.addEventListener("mouseover", moveNoButton);
+  // noBtn.addEventListener("touchstart", (e) => {
+  //   e.preventDefault();
+  //   moveNoButton();
+  // });
+
+  let moveToLeft = true; // initial direction
+
+noBtn.addEventListener("mouseover", () => {
+  const area = buttons.getBoundingClientRect();
+  const btnWidth = noBtn.offsetWidth;
+
+  if (moveToLeft) {
+    // Move LEFT
+    noBtn.style.left = "10px";
+  } else {
+    // Move RIGHT
+    noBtn.style.left = `${area.width - btnWidth - 10}px`;
+  }
+
+  // keep vertical position fixed
+  noBtn.style.top = "80px";
+
+  // toggle direction
+  moveToLeft = !moveToLeft;
+});
+
+// 📱 Mobile-safe (tap)
+noBtn.addEventListener("touchstart", (e) => {
+  e.preventDefault();
+  noBtn.dispatchEvent(new Event("mouseover"));
+});
+
+  
 
   // YES click
   // yesBtn.addEventListener("click", () => {
@@ -249,6 +282,7 @@
 
 </body>
 </html>
+
 
 
 
